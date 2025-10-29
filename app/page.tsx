@@ -39,7 +39,14 @@ export default function Home() {
   };
 
   if (!mounted) {
-    return null;
+    return (
+      <main className="min-h-screen relative bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-4xl font-bold text-[#00ffff] neon-cyan mb-4">THE NEURAL QUEST</div>
+          <div className="text-gray-400 font-mono">Initializing...</div>
+        </div>
+      </main>
+    );
   }
 
   return (

@@ -1,8 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Removed webpack canvas externalization for Vercel compatibility
-  // Canvas library should be used client-side only with dynamic imports if needed
+  // Turbopack config (Next.js 16 default)
+  turbopack: {},
+  
+  // Keep webpack config as fallback
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals = [...(config.externals || []), 'canvas', 'jsdom'];
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
