@@ -1,16 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Turbopack config (Next.js 16 default)
-  turbopack: {},
-  
-  // Keep webpack config as fallback
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.externals = [...(config.externals || []), 'canvas', 'jsdom'];
-    }
-    return config;
-  },
+  // Minimal config for Vercel - no complex webpack modifications
 };
 
 export default nextConfig;
