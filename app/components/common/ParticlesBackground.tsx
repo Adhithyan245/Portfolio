@@ -16,15 +16,17 @@ export default function ParticlesBackground() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || typeof window === 'undefined') return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     // Set canvas size
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (window) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);

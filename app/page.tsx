@@ -9,9 +9,15 @@ import SkillsZone from './components/SkillsZone/SkillsZone';
 import AchievementsZone from './components/AchievementsZone/AchievementsZone';
 import ContactZone from './components/ContactZone/ContactZone';
 import ChatbotZone from './components/ChatbotZone/ChatbotZone';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { currentZone } = useAppStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const renderZone = () => {
     switch (currentZone) {
@@ -31,6 +37,10 @@ export default function Home() {
         return <LandingZone />;
     }
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <main className="min-h-screen relative">
